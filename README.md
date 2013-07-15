@@ -4,18 +4,19 @@ kiama-sequence-diagrams
 This project uses the Kiama framework to build a parser and a semantic analysis for a sequence diagram DSL.
 You can declare simple sequence diagrams with the following syntax:
 
-diagram test
+<pre><code>diagram Name
 classes:
-    class A:
+    class TypA:
         method foo;
         method bar;
-    class B:
+    class TypB:
         method foobar;
 objects:
-    A a;
-    B b;
+    TypA a;
+    TypB b;
 interactions:
     a -> b.foobar;
     b -> a.foo;
-    
-The semantic analysis checks for the correct declaration of classes, objects and interactions.
+<code/></pre>
+
+The semantic analysis checks for the correct declaration of classes, objects and interactions and prints an error message if something is not correct.
