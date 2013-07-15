@@ -2,7 +2,7 @@ kiama-sequence-diagrams
 =======================
 
 This project uses the Kiama framework to build a parser and a semantic analysis for a sequence diagram DSL.
-You can declare simple sequence diagrams with the following syntax:
+The syntax for the DSL is as follows:
 
 <pre><code>diagram Name
 classes:
