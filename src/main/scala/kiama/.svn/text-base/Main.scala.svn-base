@@ -1,0 +1,64 @@
+package kiama
+
+import io.Source
+import java.io.{Reader, File}
+import org.kiama.util.Emitter
+
+object Main extends Parser {
+
+	import kiama._
+	import org.kiama.attribution.Attribution.initTree
+	import PrettyPrinter.pretty
+	import SemanticAnalysis._
+
+	def main(args: Array[String]): Unit = {
+		val input = Source.fromFile("res/TestInput.txt")
+		processLine(input.reader())
+		input.close()
+	}
+
+	/**
+	 * Process a user input line by parsing it to get a value of type `T`,
+	 * then passing it to the `process` method.
+	 */
+	def processLine(input: Reader) {
+		parseAll(start, input) match {
+			case Success(e, in) if in.atEnd =>
+				process(e)
+			case Success(_, in) =>
+				println("extraneous input at " + in.pos)
+			case f =>
+				println(f)
+		}
+	}
+
+	def process(e: SeqDiagram) {
+		//this method is necessary and fucking annoying
+		initTree (e)
+
+		println("finished processing input!")
+		println("e = " + e)
+//		println("e tree:")
+//		println(pretty_any(e))
+
+		println("e tree pretty printed:")
+		println(pretty(e))
+		println()
+
+		println("Semanticly correct: " + isValid(e))
+		println()
+
+		showErrors(e)
+	}
+
+	def showErrors(e: SeqDiagram) {
+		import org.kiama.util.Messaging._
+		import org.kiama.util.Emitter
+
+		resetmessages()
+		check(e)
+		if (messagecount > 0)
+			report (new Emitter)
+	}
+
+}
