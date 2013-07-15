@@ -1,7 +1,7 @@
 kiama-sequence-diagrams
 =======================
 
-This project uses the Kiama framework to build a parser and a semantic analysis for a sequence diagram DSL.
+This project uses the Kiama framework to build a parser and a semantic analysis for a sequence diagram DSL.<br/>
 The syntax for the DSL is as follows:
 
 <pre><code>diagram Name
@@ -19,4 +19,4 @@ interactions:
     b -> a.foo;
 <code/></pre>
 
-The semantic analysis checks for the correct declaration of classes, objects and interactions and prints an error message if something is not correct.
+The semantic analysis checks for the correct declaration of classes, objects and interactions and prints a corresponding error message if something is not correct.
